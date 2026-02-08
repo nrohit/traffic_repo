@@ -1,0 +1,178 @@
+import { Violation } from '../types/fine';
+
+export const violations: Violation[] = [
+  // Documentation violations
+  {
+    id: 'doc-1',
+    name: 'Driving Without License',
+    description: 'Operating a motor vehicle without a valid driving license',
+    category: 'documentation',
+    fineAmount: 5000,
+    section: 'Section 181 MV Act',
+    isCompoundable: true,
+  },
+  {
+    id: 'doc-2',
+    name: 'Driving Without Registration',
+    description: 'Driving a vehicle without valid registration certificate',
+    category: 'documentation',
+    fineAmount: 5000,
+    section: 'Section 39 MV Act',
+    isCompoundable: true,
+  },
+  {
+    id: 'doc-3',
+    name: 'Driving Without Insurance',
+    description: 'Operating a vehicle without valid third-party insurance',
+    category: 'documentation',
+    fineAmount: 2000,
+    section: 'Section 196 MV Act',
+    isCompoundable: true,
+  },
+  {
+    id: 'doc-4',
+    name: 'Driving Without PUC Certificate',
+    description: 'Vehicle does not have a valid Pollution Under Control certificate',
+    category: 'documentation',
+    fineAmount: 10000,
+    section: 'Section 190(2) MV Act',
+    isCompoundable: true,
+  },
+
+  // Safety violations
+  {
+    id: 'safe-1',
+    name: 'Not Wearing Seatbelt',
+    description: 'Driver or passenger not wearing a seatbelt while driving',
+    category: 'safety',
+    fineAmount: 1000,
+    section: 'Section 194B MV Act',
+    isCompoundable: true,
+  },
+  {
+    id: 'safe-2',
+    name: 'Not Wearing Helmet',
+    description: 'Two-wheeler rider or pillion not wearing a helmet',
+    category: 'safety',
+    fineAmount: 1000,
+    section: 'Section 194D MV Act',
+    isCompoundable: true,
+  },
+  {
+    id: 'safe-3',
+    name: 'Using Mobile While Driving',
+    description: 'Using a handheld mobile phone while operating a vehicle',
+    category: 'safety',
+    fineAmount: 5000,
+    section: 'Section 184 MV Act',
+    isCompoundable: false,
+  },
+  {
+    id: 'safe-4',
+    name: 'Dangerous Driving',
+    description: 'Driving in a manner dangerous to public safety',
+    category: 'safety',
+    fineAmount: 5000,
+    section: 'Section 184 MV Act',
+    isCompoundable: false,
+  },
+  {
+    id: 'safe-5',
+    name: 'Overloading (Passengers)',
+    description: 'Carrying passengers beyond the permitted capacity',
+    category: 'safety',
+    fineAmount: 1000,
+    section: 'Section 194A MV Act',
+    isCompoundable: true,
+  },
+
+  // Traffic violations
+  {
+    id: 'traf-1',
+    name: 'Jumping Red Light',
+    description: 'Crossing an intersection when the traffic signal is red',
+    category: 'traffic',
+    fineAmount: 5000,
+    section: 'Section 119/177 MV Act',
+    isCompoundable: true,
+  },
+  {
+    id: 'traf-2',
+    name: 'Over Speeding',
+    description: 'Exceeding the prescribed speed limit for the road',
+    category: 'traffic',
+    fineAmount: 2000,
+    section: 'Section 183 MV Act',
+    isCompoundable: true,
+  },
+  {
+    id: 'traf-3',
+    name: 'Wrong Side Driving',
+    description: 'Driving on the wrong side of the road',
+    category: 'traffic',
+    fineAmount: 5000,
+    section: 'Section 184 MV Act',
+    isCompoundable: false,
+  },
+  {
+    id: 'traf-4',
+    name: 'Illegal Parking',
+    description: 'Parking in a no-parking zone or obstructing traffic',
+    category: 'traffic',
+    fineAmount: 500,
+    section: 'Section 177 MV Act',
+    isCompoundable: true,
+  },
+  {
+    id: 'traf-5',
+    name: 'Disobeying Traffic Signs',
+    description: 'Failing to follow mandatory traffic signs and road markings',
+    category: 'traffic',
+    fineAmount: 500,
+    section: 'Section 177 MV Act',
+    isCompoundable: true,
+  },
+  {
+    id: 'traf-6',
+    name: 'Not Giving Way to Emergency Vehicle',
+    description: 'Failing to give way to an ambulance, fire engine, or police vehicle',
+    category: 'traffic',
+    fineAmount: 10000,
+    section: 'Section 194E MV Act',
+    isCompoundable: false,
+  },
+
+  // DUI violations
+  {
+    id: 'dui-1',
+    name: 'Drunk Driving',
+    description: 'Driving under the influence of alcohol (BAC > 30mg/100ml)',
+    category: 'dui',
+    fineAmount: 10000,
+    section: 'Section 185 MV Act',
+    isCompoundable: false,
+  },
+  {
+    id: 'dui-2',
+    name: 'Driving Under Drug Influence',
+    description: 'Operating a vehicle while impaired by drugs or narcotics',
+    category: 'dui',
+    fineAmount: 10000,
+    section: 'Section 185 MV Act',
+    isCompoundable: false,
+  },
+];
+
+export const categoryLabels: Record<string, string> = {
+  documentation: 'Documentation',
+  safety: 'Safety',
+  traffic: 'Traffic',
+  dui: 'DUI / Impairment',
+};
+
+export const categoryColors: Record<string, string> = {
+  documentation: 'bg-blue-100 text-blue-800 border-blue-200',
+  safety: 'bg-amber-100 text-amber-800 border-amber-200',
+  traffic: 'bg-red-100 text-red-800 border-red-200',
+  dui: 'bg-purple-100 text-purple-800 border-purple-200',
+};
