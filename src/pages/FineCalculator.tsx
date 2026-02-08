@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { Calculator } from 'lucide-react';
+import { Calculator, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Violation, ViolationCategory, SelectedViolation } from '../types/fine';
 import { violations } from '../data/violations';
 import SearchBar from '../components/SearchBar';
@@ -74,6 +75,13 @@ const FineCalculator: React.FC = () => {
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-4 py-6">
           <div className="flex items-center gap-3">
+            <Link
+              to="/"
+              className="text-gray-500 hover:text-gray-700"
+              aria-label="Back to home"
+            >
+              <ArrowLeft size={24} />
+            </Link>
             <Calculator className="text-blue-600" size={28} />
             <div>
               <h1 className="text-2xl font-bold text-gray-900">

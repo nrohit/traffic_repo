@@ -1,8 +1,17 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { BrowserRouter } from 'react-router-dom';
 import FineCalculator from './FineCalculator';
 import { violations } from '../data/violations';
+
+function renderWithRouter() {
+  return render(
+    <BrowserRouter>
+      <FineCalculator />
+    </BrowserRouter>
+  );
+}
 
 function getTotalFineText(): string {
   // The total fine is the bold red text next to "Total Fine" label
@@ -13,7 +22,7 @@ function getTotalFineText(): string {
 
 describe('FineCalculator', () => {
   it('renders the page header', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
     expect(screen.getByText('Fine Calculator')).toBeInTheDocument();
     expect(
       screen.getByText(/Motor Vehicles \(Amendment\) Act/)
@@ -21,21 +30,21 @@ describe('FineCalculator', () => {
   });
 
   it('displays all violations by default', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
     violations.forEach((v) => {
       expect(screen.getByText(v.name)).toBeInTheDocument();
     });
   });
 
   it('shows empty summary when no violations selected', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
     expect(
       screen.getByText(/No violations selected/)
     ).toBeInTheDocument();
   });
 
   it('filters violations by search query', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
 
     const searchInput = screen.getByPlaceholderText('Search violations...');
     userEvent.type(searchInput, 'helmet');
@@ -45,7 +54,7 @@ describe('FineCalculator', () => {
   });
 
   it('filters violations by category', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
 
     const filterGroup = screen.getByRole('radiogroup');
     const duiButton = within(filterGroup).getByText('DUI / Impairment');
@@ -56,7 +65,7 @@ describe('FineCalculator', () => {
   });
 
   it('adds a violation and updates the summary', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
 
     userEvent.click(screen.getByLabelText('Add Jumping Red Light'));
 
@@ -65,7 +74,7 @@ describe('FineCalculator', () => {
   });
 
   it('increments violation count on multiple adds', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
 
     const addButton = screen.getByLabelText('Add Illegal Parking');
     userEvent.click(addButton);
@@ -78,7 +87,7 @@ describe('FineCalculator', () => {
   });
 
   it('removes a violation via the violation card minus button', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
 
     userEvent.click(screen.getByLabelText('Add Jumping Red Light'));
     userEvent.click(screen.getByLabelText('Add Illegal Parking'));
@@ -92,7 +101,7 @@ describe('FineCalculator', () => {
   });
 
   it('clears all violations', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
 
     userEvent.click(screen.getByLabelText('Add Drunk Driving'));
     userEvent.click(screen.getByLabelText('Add Over Speeding'));
@@ -103,7 +112,7 @@ describe('FineCalculator', () => {
   });
 
   it('clears search input when X button is clicked', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
 
     const searchInput = screen.getByPlaceholderText('Search violations...');
     userEvent.type(searchInput, 'helmet');
@@ -116,7 +125,7 @@ describe('FineCalculator', () => {
   });
 
   it('shows no results message when search matches nothing', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
 
     userEvent.type(
       screen.getByPlaceholderText('Search violations...'),
@@ -129,7 +138,7 @@ describe('FineCalculator', () => {
   });
 
   it('calculates total for multiple different violations', () => {
-    render(<FineCalculator />);
+    renderWithRouter();
 
     // Drunk Driving (10000) + Not Wearing Seatbelt (1000) + Illegal Parking (500)
     userEvent.click(screen.getByLabelText('Add Drunk Driving'));
